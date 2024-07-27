@@ -10,18 +10,14 @@ import { useNavigate } from "react-router-dom";
 
 function Signup() {
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // this function allows the user to navigate to the workoutmaker function of the application
 
-    const handleSignUp = () => {
+    const handleSignUp = () => { // This will send the user to the route /creator entering the workoutmaker function
       navigate('/Creator');
     };
 
   return (
     <Container fluid className="d-flex flex-column align-items-center">
-      <video className="mt-3" autoPlay loop>
-        <source src={Ez} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
       <Row className="mt-3">
         <Col>
         <FloatingLabel
