@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function Signup() {
   
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(''); // all the state change variables that track to ensurew a password being created and email
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
@@ -20,23 +20,24 @@ function Signup() {
       e.preventDefault();
       setError(null);
       setMessage(null);
+      
 
       const validateEmail = (email) => {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // this will make sure the user is typing an actual email rather than random characters
         return re.test(String(email).toLowerCase());
       };
     
       if (email === '' || password === '') {
-        setError('Both email and password are required');
+        setError('Both email and password are required'); // ensures the user is typing in a email as well as password to create their user
         return;
       }
 
       if (!validateEmail(email)) {
-        setError('Invalid email format');
+        setError('Invalid email format'); // if the email typed doesn't match the specifications laid out in ValidateEmail function when clicking sign up it will return Invalid email format
         return;
       }
 
-      try {
+      try { // will try to run the email and password the user created if an error occures catch will give an error
         createUserWithEmailAndPassword(auth, email, password);
         setMessage('User created successfully!');
         navigate('/Creator');
