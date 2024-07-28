@@ -55,10 +55,8 @@ function TrainingLevel({ Beginnner, Novice, Intermediate, Advanced, Expert }) {
             fullscreen={fullscreen}
             onHide={() => setShowBeginner(false)}
           >
-            <Modal.Body>
-              {Beginnner}{" "}
-              {/* these are all the training level props being rendered in as a fullscreen modal to save on website speed!!*/}
-            </Modal.Body>
+            <Modal.Body>{Beginnner}</Modal.Body>
+             {/* these are all the training level props being rendered in as a fullscreen modal to save on website speed!!*/}
           </Modal>
         </Col>
         <Col>
@@ -72,6 +70,7 @@ function TrainingLevel({ Beginnner, Novice, Intermediate, Advanced, Expert }) {
             onHide={() => setShowNovice(false)}
           >
             <Modal.Body>{Novice}</Modal.Body>
+            {/* these are all the training level props being rendered in as a fullscreen modal to save on website speed!!*/}
           </Modal>
         </Col>
       </Row>
@@ -90,6 +89,7 @@ function TrainingLevel({ Beginnner, Novice, Intermediate, Advanced, Expert }) {
             onHide={() => setShowIntermediate(false)}
           >
             <Modal.Body>{Intermediate}</Modal.Body>
+             {/* these are all the training level props being rendered in as a fullscreen modal to save on website speed!!*/}
           </Modal>
         </Col>
         <Col>
@@ -106,6 +106,7 @@ function TrainingLevel({ Beginnner, Novice, Intermediate, Advanced, Expert }) {
             onHide={() => setShowAdvanced(false)}
           >
             <Modal.Body>{Advanced}</Modal.Body>
+             {/* these are all the training level props being rendered in as a fullscreen modal to save on website speed!!*/}
           </Modal>
         </Col>
       </Row>
@@ -121,6 +122,7 @@ function TrainingLevel({ Beginnner, Novice, Intermediate, Advanced, Expert }) {
             onHide={() => setShowExpert(false)}
           >
             <Modal.Body>{Expert}</Modal.Body>
+             {/* these are all the training level props being rendered in as a fullscreen modal to save on website speed!!*/}
           </Modal>
         </Col>
       </Row>
