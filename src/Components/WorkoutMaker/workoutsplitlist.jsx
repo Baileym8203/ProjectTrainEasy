@@ -1,33 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SplitList from "../WorkoutMaker/SplitList.json";
+import { db, getDocs, collection } from "../Firebase/firebase-config";
+
+
 import { Button, Modal } from "react-bootstrap";
 import Goals from "./goals"; // Important import!! This is the Goals selection that comes after choosing the split!
 
 // This file is all of the prop functions that keep the user going through the workout creator (Workoutmaker.jsx) dependent on choices
 
-const beginnerSplitItem = SplitList.find((split) => split.splitID === 1); // find out the data I need specifically for Beginner split
-const beginnerSplitItem2 = SplitList.find((split) => split.splitID === 2);
-
-const NoviceSplitItem = SplitList.find((split) => split.splitID === 1); // find out the data I need specifically for Novice split
-const NoviceSplitItem2 = SplitList.find((split) => split.splitID === 2);
-const NoviceSplitItem3 = SplitList.find((split) => split.splitID === 3);
-
-const IntermediateSplitItem = SplitList.find((split) => split.splitID === 2); // find out the data I need specifically for Intermediate split
-const IntermediateSplitItem2 = SplitList.find((split) => split.splitID === 3);
-const IntermediateSplitItem3 = SplitList.find((split) => split.splitID === 4);
-
-const AdvancedSplitItem = SplitList.find((split) => split.splitID === 4); // find out the data I need specifically for Advanced split
-const AdvancedSplitItem2 = SplitList.find((split) => split.splitID === 5);
-const AdvancedSplitItem3 = SplitList.find((split) => split.splitID === 6);
-
-const ExpertSplitItem = SplitList.find((split) => split.splitID === 4); // find out the data I need specifically for Expert split
-const ExpertSplitItem2 = SplitList.find((split) => split.splitID === 5);
-const ExpertSplitItem3 = SplitList.find((split) => split.splitID === 6);
-const ExpertSplitItem4 = SplitList.find((split) => split.splitID === 7);
-
 export function BeginnerSplit() {
   const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
   const [showTrainingGoal, setShowTrainingGoal] = useState(false);
+  const [splits, setSplits] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => { // this will fetch the data needed from firebase firestore from the specific database!
+      try {
+        const querySnapshot = await getDocs(collection(db, 'splits'));
+        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setSplits(data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const beginnerSplitItem = splits.find(split => split.id === "1");
+  const beginnerSplitItem2 = splits.find(split => split.id === "2");
 
   function handleShowTrainingGoal(breakpoint) {
     // this will handle opening the Training Goals Section!
@@ -77,6 +78,26 @@ export function BeginnerSplit() {
 export function NoviceSplit() {
   const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
   const [showTrainingGoal, setShowTrainingGoal] = useState(false);
+  const [splits, setSplits] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => { // this will fetch the data needed from firebase firestore from the specific database!
+      try {
+        const querySnapshot = await getDocs(collection(db, 'splits'));
+        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setSplits(data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+ const NoviceSplitItem = splits.find(split => split.id === "1"); // find out the data I need specifically for Novice split
+const NoviceSplitItem2 = splits.find(split => split.id === "2");
+const NoviceSplitItem3 = splits.find(split => split.id === "3");
 
   function handleShowTrainingGoal(breakpoint) {
     // this will handle opening the Training Goals Section!
@@ -137,6 +158,25 @@ export function NoviceSplit() {
 export function IntermediateSplit() {
   const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
   const [showTrainingGoal, setShowTrainingGoal] = useState(false);
+  const [splits, setSplits] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => { // this will fetch the data needed from firebase firestore from the specific database!
+      try {
+        const querySnapshot = await getDocs(collection(db, 'splits'));
+        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setSplits(data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+const IntermediateSplitItem = splits.find(split => split.id === "2"); // find out the data I need specifically for Intermediate split
+const IntermediateSplitItem2 = splits.find(split => split.id === "3");
+const IntermediateSplitItem3 = splits.find(split => split.id === "4");
 
   function handleShowTrainingGoal(breakpoint) {
     // this will handle opening the Training Goals Section!
@@ -197,7 +237,26 @@ export function IntermediateSplit() {
 export function AdvancedSplit() {
   const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
   const [showTrainingGoal, setShowTrainingGoal] = useState(false);
+  const [splits, setSplits] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => { // this will fetch the data needed from firebase firestore from the specific database!
+      try {
+        const querySnapshot = await getDocs(collection(db, 'splits'));
+        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setSplits(data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
 
+    fetchData();
+  }, []);
+
+  const AdvancedSplitItem = splits.find(split => split.id === "4"); // find out the data I need specifically for Advanced split
+  const AdvancedSplitItem2 = splits.find(split => split.id === "5");
+  const AdvancedSplitItem3 = splits.find(split => split.id === "6");
+  
   function handleShowTrainingGoal(breakpoint) {
     // this will handle opening the Training Goals Section!
     setFullscreen(breakpoint);
@@ -257,6 +316,26 @@ export function AdvancedSplit() {
 export function ExpertSplit() {
   const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
   const [showTrainingGoal, setShowTrainingGoal] = useState(false);
+  const [splits, setSplits] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => { // this will fetch the data needed from firebase firestore from the specific database!
+      try {
+        const querySnapshot = await getDocs(collection(db, 'splits'));
+        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setSplits(data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+const ExpertSplitItem = splits.find(split => split.id === "4"); // find out the data I need specifically for Expert split
+const ExpertSplitItem2 = splits.find(split => split.id === "5");
+const ExpertSplitItem3 = splits.find(split => split.id === "6");
+const ExpertSplitItem4 = splits.find(split => split.id === "7"); 
 
   function handleShowTrainingGoal(breakpoint) {
     // this will handle opening the Training Goals Section!

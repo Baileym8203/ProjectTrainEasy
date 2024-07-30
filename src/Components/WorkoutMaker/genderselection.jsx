@@ -1,12 +1,5 @@
 import React from "react";
 import TrainingLevel from "./traininglevel";
-import {
-  BeginnerSplit,
-  NoviceSplit,
-  IntermediateSplit,
-  AdvancedSplit,
-  ExpertSplit,
-} from "./workoutsplitlist"; // these are IMPORTANT they are the imports that connect to the props that pass all the users training level data in the workoutmaker!
 import { Container, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
@@ -47,13 +40,7 @@ function GenderSelection() {
             onHide={() => setShowMale(false)}
           >
             <Modal.Body>
-              <TrainingLevel
-                Beginnner={<BeginnerSplit />}
-                Novice={<NoviceSplit />}
-                Intermediate={<IntermediateSplit />} // all of the props for the male gender choice!
-                Advanced={<AdvancedSplit />}
-                Expert={<ExpertSplit />}
-              />
+              <TrainingLevel/>
             </Modal.Body>
             {/* this is where i've made the props of all training levels 
             as well as given them their specific data needed for the user on selection*/}
@@ -72,13 +59,7 @@ function GenderSelection() {
             onHide={() => setShowFemale(false)}
           >
             <Modal.Body>
-              <TrainingLevel
-                Beginnner={<BeginnerSplit />}
-                Novice={<NoviceSplit />}
-                Intermediate={<IntermediateSplit />} // all the props for the female gender choice
-                Advanced={<AdvancedSplit />}
-                Expert={<ExpertSplit />}
-              />
+              <TrainingLevel/>
             </Modal.Body>
           </Modal>
         </Col>

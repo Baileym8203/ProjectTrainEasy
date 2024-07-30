@@ -1,129 +1,33 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Button, Modal } from "react-bootstrap";
+import React from "react";
+import { Container, Row, Col} from "react-bootstrap";
+import { Beginner, Novice, Intermediate, Advanced, Expert } from "./TrainingLvlFunctions"; // All Training lvl files with Firestore data
+import { BeginnerSplit, NoviceSplit, IntermediateSplit, AdvancedSplit, ExpertSplit } from "./workoutsplitlist";
 
-function TrainingLevel({ Beginnner, Novice, Intermediate, Advanced, Expert }) {
-  // These are extremly IMPORTANT!! These are the props that will be passing all the traing level data
-  const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
-  const [showBeginner, setShowBeginner] = useState(false);
-  const [showNovice, setShowNovice] = useState(false);
-  const [showIntermediate, setShowIntermediate] = useState(false); // all of these are the use states for the modals when opening and closing for the different training levels
-  const [showAdvanced, setShowAdvanced] = useState(false);
-  const [showExpert, setShowExpert] = useState(false);
+function TrainingLevel() {
+  // This file is the home file for training Lvls. This file is mainly to keep track of props easier with simplicity
+  // These are extremly IMPORTANT!! These are the props that will be passing all the training level data
 
-  function handleShowBeginner(breakpoint) {
-    // this will handle opening the beginner split list
-    setFullscreen(breakpoint);
-    setShowBeginner(true);
-  }
-
-  function handleShowNovice(breakpoint) {
-    // this will handle opening the novice split list
-    setFullscreen(breakpoint);
-    setShowNovice(true);
-  }
-
-  function handleShowIntermediate(breakpoint) {
-    // this will handle opening the intermediate split list
-    setFullscreen(breakpoint);
-    setShowIntermediate(true);
-  }
-
-  function handleShowAdvanced(breakpoint) {
-    // this will handle opening the advanced split list
-    setFullscreen(breakpoint);
-    setShowAdvanced(true);
-  }
-
-  function handleShowExpert(breakpoint) {
-    // this will handle opening the expert split list
-    setFullscreen(breakpoint);
-    setShowExpert(true);
-  }
   return (
     <Container className="d-flex flex-column align-items-center">
       <Row>
         <Col>
-          <Button
-            className="mb-3"
-            onClick={() => handleShowBeginner(fullscreen)}
-          >
-            Beginner <br />
-            1-6 Months
-          </Button>
-          <Modal
-            show={showBeginner}
-            fullscreen={fullscreen}
-            onHide={() => setShowBeginner(false)}
-          >
-            <Modal.Body>{Beginnner}</Modal.Body>
-             {/* these are all the training level props being rendered in as a fullscreen modal to save on website speed!!*/}
-          </Modal>
+         <Beginner Beginner = {<BeginnerSplit />}/>
         </Col>
         <Col>
-          <Button className="mb-3" onClick={() => handleShowNovice(fullscreen)}>
-            Novice <br />
-            6-12 Months
-          </Button>
-          <Modal
-            show={showNovice}
-            fullscreen={fullscreen}
-            onHide={() => setShowNovice(false)}
-          >
-            <Modal.Body>{Novice}</Modal.Body>
-            {/* these are all the training level props being rendered in as a fullscreen modal to save on website speed!!*/}
-          </Modal>
+         <Novice Novice = {<NoviceSplit />}/>
         </Col>
       </Row>
       <Row>
         <Col>
-          <Button
-            className="mb-3"
-            onClick={() => handleShowIntermediate(fullscreen)}
-          >
-            Intermediate <br />
-            1-3 years
-          </Button>
-          <Modal
-            show={showIntermediate}
-            fullscreen={fullscreen}
-            onHide={() => setShowIntermediate(false)}
-          >
-            <Modal.Body>{Intermediate}</Modal.Body>
-             {/* these are all the training level props being rendered in as a fullscreen modal to save on website speed!!*/}
-          </Modal>
+          <Intermediate Intermediate = {<IntermediateSplit />}/>
         </Col>
         <Col>
-          <Button
-            className="mb-3"
-            onClick={() => handleShowAdvanced(fullscreen)}
-          >
-            Advanced <br />
-            3-5 years
-          </Button>
-          <Modal
-            show={showAdvanced}
-            fullscreen={fullscreen}
-            onHide={() => setShowAdvanced(false)}
-          >
-            <Modal.Body>{Advanced}</Modal.Body>
-             {/* these are all the training level props being rendered in as a fullscreen modal to save on website speed!!*/}
-          </Modal>
+         <Advanced Advanced = {<AdvancedSplit />} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <Button className="mb-3" onClick={() => handleShowExpert(fullscreen)}>
-            Expert <br />
-            5-10 years
-          </Button>
-          <Modal
-            show={showExpert}
-            fullscreen={fullscreen}
-            onHide={() => setShowExpert(false)}
-          >
-            <Modal.Body>{Expert}</Modal.Body>
-             {/* these are all the training level props being rendered in as a fullscreen modal to save on website speed!!*/}
-          </Modal>
+          <Expert Expert = {<ExpertSplit />} />
         </Col>
       </Row>
     </Container>
