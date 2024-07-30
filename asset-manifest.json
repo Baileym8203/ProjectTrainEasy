@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/ProjectTrainEasy/static/css/main.c0a2b351.css",
-    "main.js": "/ProjectTrainEasy/static/js/main.0e4690ea.js",
+    "main.js": "/ProjectTrainEasy/static/js/main.f45a0c92.js",
     "static/js/453.1d6c1384.chunk.js": "/ProjectTrainEasy/static/js/453.1d6c1384.chunk.js",
     "service-worker.js": "/ProjectTrainEasy/service-worker.js",
     "index.html": "/ProjectTrainEasy/index.html",
     "main.c0a2b351.css.map": "/ProjectTrainEasy/static/css/main.c0a2b351.css.map",
-    "main.0e4690ea.js.map": "/ProjectTrainEasy/static/js/main.0e4690ea.js.map",
+    "main.f45a0c92.js.map": "/ProjectTrainEasy/static/js/main.f45a0c92.js.map",
     "453.1d6c1384.chunk.js.map": "/ProjectTrainEasy/static/js/453.1d6c1384.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c0a2b351.css",
-    "static/js/main.0e4690ea.js"
+    "static/js/main.f45a0c92.js"
   ]
 }
