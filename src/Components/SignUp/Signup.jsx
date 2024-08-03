@@ -3,8 +3,7 @@ import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {app} from "../Firebase/firebase-config";
 import { useNavigate } from "react-router-dom";
-
-
+import { AddingUserToFirebaseDatabase } from "../Firebase/FirebaseUtills";
 
 function Signup() {
   
@@ -14,8 +13,6 @@ function Signup() {
   const [message, setMessage] = useState(null);
   const auth = getAuth(app);
   const navigate = useNavigate(); // this function allows the user to navigate to the workoutmaker function of the application
-
-
  
     const handleSignUp = (e) => { // This will send the user to the route /creator entering the workoutmaker function as well as sign up The user to TrainEz
       e.preventDefault();
@@ -40,6 +37,7 @@ function Signup() {
 
       try { // will try to run the email and password the user created if an error occures catch will give an error
         createUserWithEmailAndPassword(auth, email, password);
+        AddingUserToFirebaseDatabase() // this will add the user ID to the users collection and track their choices through the application
         setMessage('User created successfully!');
         navigate('/Creator');
       } catch (error) {

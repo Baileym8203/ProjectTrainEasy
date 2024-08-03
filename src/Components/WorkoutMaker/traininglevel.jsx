@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col} from "react-bootstrap";
 import { Beginner, Novice, Intermediate, Advanced, Expert } from "./TrainingLvlFunctions"; // All Training lvl files with Firestore data
-import { BeginnerSplit, NoviceSplit, IntermediateSplit, AdvancedSplit, ExpertSplit } from "./workoutsplitlist";
-
+import { BeginnerSplitMale, NoviceSplitMale, IntermediateSplitMale, AdvancedSplitMale, ExpertSplitMale, BeginnerSplitFemale,
+  NoviceSplitFemale, IntermediateSplitFemale, AdvancedSplitFemale, ExpertSplitFemale} from "./workoutsplitlist";
 function TrainingLevel() {
   // This file is the home file for training Lvls. This file is mainly to keep track of props easier with simplicity
   // These are extremly IMPORTANT!! These are the props that will be passing all the training level data
@@ -11,23 +11,23 @@ function TrainingLevel() {
     <Container className="d-flex flex-column align-items-center">
       <Row>
         <Col>
-         <Beginner Beginner = {<BeginnerSplit />}/>
+         <Beginner BeginnerMale = {<BeginnerSplitMale />} BeginnerFemale = {<BeginnerSplitFemale />}/>
         </Col>
         <Col>
-         <Novice Novice = {<NoviceSplit />}/>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Intermediate Intermediate = {<IntermediateSplit />}/>
-        </Col>
-        <Col>
-         <Advanced Advanced = {<AdvancedSplit />} />
+         <Novice NoviceMale = {<NoviceSplitMale />} NoviceFemale = {<NoviceSplitFemale />}/>
         </Col>
       </Row>
       <Row>
         <Col>
-          <Expert Expert = {<ExpertSplit />} />
+          <Intermediate IntermediateMale = {<IntermediateSplitMale />} IntermediateFemale = {<IntermediateSplitFemale />}/>
+        </Col>
+        <Col>
+         <Advanced AdvancedMale = {<AdvancedSplitMale />} AdvancedFemale = {<AdvancedSplitFemale />}/>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Expert ExpertMale = {<ExpertSplitMale />} ExpertFemale = {<ExpertSplitFemale />} />
         </Col>
       </Row>
     </Container>

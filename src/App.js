@@ -16,7 +16,7 @@ function App() { // change the routes to match the URL of the github deployment 
             <Route path="/ProjectTrainEasy/SignUp" element={<Signup />} />
           </Route>
           <Route  element={<ProtectedRoute />}>
-      <Route path='/Creator' element={<WorkoutMaker />}/>
+      <Route path='/Creator' element={<WorkoutMaker/>}/>
       <Route path='/Home' element={<Home />}/>
       </Route>
       <Route path="*" element={<Navigate to="/ProjectTrainEasy/SignUp" />} />

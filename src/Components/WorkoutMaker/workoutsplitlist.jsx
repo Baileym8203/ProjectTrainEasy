@@ -1,54 +1,68 @@
-import React, { useState, useEffect } from "react";
-import SplitList from "../WorkoutMaker/SplitList.json";
-import { db, getDocs, collection } from "../Firebase/firebase-config";
-
-
+import React, { useState} from "react";
 import { Button, Modal } from "react-bootstrap";
 import Goals from "./goals"; // Important import!! This is the Goals selection that comes after choosing the split!
 
 // This file is all of the prop functions that keep the user going through the workout creator (Workoutmaker.jsx) dependent on choices
 
-export function BeginnerSplit() {
+export function BeginnerSplitMale() {
   const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
   const [showTrainingGoal, setShowTrainingGoal] = useState(false);
-  const [splits, setSplits] = useState([]);
-  
-  useEffect(() => {
-    const fetchData = async () => { // this will fetch the data needed from firebase firestore from the specific database!
-      try {
-        const querySnapshot = await getDocs(collection(db, 'splits'));
-        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setSplits(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const beginnerSplitItem = splits.find(split => split.id === "1");
-  const beginnerSplitItem2 = splits.find(split => split.id === "2");
 
   function handleShowTrainingGoal(breakpoint) {
     // this will handle opening the Training Goals Section!
     setFullscreen(breakpoint);
     setShowTrainingGoal(true);
   }
+
   return (
     <div>
       <h1>Choose Your Split</h1>
       <ul>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {beginnerSplitItem ? ( // this creates a sudo function that will help change the item to an error code if not fetching the data correctly
-            <div>
-              <p>Recomended: {beginnerSplitItem.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {beginnerSplitItem.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p> // this will be a not found error code to track the split data not loading in properly
-          )}
+          <div>
+            <p>Recomended: Full Body</p>
+            <p>Time: 3 Day</p>
+          </div>
+        </Button>
+        <Modal
+          show={showTrainingGoal}
+          fullscreen={fullscreen}
+          onHide={() => setShowTrainingGoal(false)}
+        >
+          <Modal.Body>
+            <Goals />
+          </Modal.Body>
+        </Modal>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Push Pull</p>
+            <p>Time: 4 Day</p>
+          </div>
+        </Button>
+      </ul>
+    </div>
+  );
+}
+export function NoviceSplitMale() {
+  const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
+  const [showTrainingGoal, setShowTrainingGoal] = useState(false);
+
+  function handleShowTrainingGoal(breakpoint) {
+    // this will handle opening the Training Goals Section!
+    setFullscreen(breakpoint);
+    setShowTrainingGoal(true);
+  }
+
+  return (
+    <div>
+      <h1>Choose Your Split</h1>
+      <ul>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Full Body</p>
+            {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
+            <p>Time: 3 Day</p>
+          </div>
         </Button>
         <Modal
           show={showTrainingGoal}
@@ -61,43 +75,24 @@ export function BeginnerSplit() {
           </Modal.Body>
         </Modal>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {beginnerSplitItem2 ? (
-            <div>
-              <p>Recomended: {beginnerSplitItem2.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {beginnerSplitItem2.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p>
-          )}
+          <div>
+            <p>Recomended: Push Pull</p>
+            <p>Time: 4 Day</p>
+          </div>
+        </Button>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Upper Lower</p>
+            <p>Time: 4 Day</p>
+          </div>
         </Button>
       </ul>
     </div>
   );
 }
-export function NoviceSplit() {
+export function IntermediateSplitMale() {
   const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
   const [showTrainingGoal, setShowTrainingGoal] = useState(false);
-  const [splits, setSplits] = useState([]);
-  
-  useEffect(() => {
-    const fetchData = async () => { // this will fetch the data needed from firebase firestore from the specific database!
-      try {
-        const querySnapshot = await getDocs(collection(db, 'splits'));
-        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setSplits(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-
- const NoviceSplitItem = splits.find(split => split.id === "1"); // find out the data I need specifically for Novice split
-const NoviceSplitItem2 = splits.find(split => split.id === "2");
-const NoviceSplitItem3 = splits.find(split => split.id === "3");
 
   function handleShowTrainingGoal(breakpoint) {
     // this will handle opening the Training Goals Section!
@@ -109,15 +104,10 @@ const NoviceSplitItem3 = splits.find(split => split.id === "3");
       <h1>Choose Your Split</h1>
       <ul>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {NoviceSplitItem ? ( // this creates a sudo function that will help change the item to an error code if not fetching the data correctly
-            <div>
-              <p>Recomended: {NoviceSplitItem.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {NoviceSplitItem.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p> // this will be a not found error code to track the split data not loading in properly
-          )}
+          <div>
+            <p>Recomended: Push Pull</p>
+            <p>Time: 4 Day</p>
+          </div>
         </Button>
         <Modal
           show={showTrainingGoal}
@@ -130,53 +120,24 @@ const NoviceSplitItem3 = splits.find(split => split.id === "3");
           </Modal.Body>
         </Modal>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {NoviceSplitItem2 ? (
-            <div>
-              <p>Recomended: {NoviceSplitItem2.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {NoviceSplitItem2.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p>
-          )}
+          <div>
+            <p>Recomended: Upper Lower</p>
+            <p>Time: 4 Day</p>
+          </div>
         </Button>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {NoviceSplitItem3 ? (
-            <div>
-              <p>Recomended: {NoviceSplitItem3.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {NoviceSplitItem3.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p>
-          )}
+          <div>
+            <p>Recomended: Push Pull Legs</p>
+            <p>Time: 6 Day</p>
+          </div>
         </Button>
       </ul>
     </div>
   );
 }
-export function IntermediateSplit() {
+export function AdvancedSplitMale() {
   const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
   const [showTrainingGoal, setShowTrainingGoal] = useState(false);
-  const [splits, setSplits] = useState([]);
-  
-  useEffect(() => {
-    const fetchData = async () => { // this will fetch the data needed from firebase firestore from the specific database!
-      try {
-        const querySnapshot = await getDocs(collection(db, 'splits'));
-        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setSplits(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-const IntermediateSplitItem = splits.find(split => split.id === "2"); // find out the data I need specifically for Intermediate split
-const IntermediateSplitItem2 = splits.find(split => split.id === "3");
-const IntermediateSplitItem3 = splits.find(split => split.id === "4");
 
   function handleShowTrainingGoal(breakpoint) {
     // this will handle opening the Training Goals Section!
@@ -188,15 +149,10 @@ const IntermediateSplitItem3 = splits.find(split => split.id === "4");
       <h1>Choose Your Split</h1>
       <ul>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {IntermediateSplitItem ? ( // this creates a sudo function that will help change the item to an error code if not fetching the data correctly
-            <div>
-              <p>Recomended: {IntermediateSplitItem.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {IntermediateSplitItem.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p> // this will be a not found error code to track the split data not loading in properly
-          )}
+          <div>
+            <p>Recomended: Push Pull Legs</p>
+            <p>Time: 6 Day</p>
+          </div>
         </Button>
         <Modal
           show={showTrainingGoal}
@@ -209,54 +165,25 @@ const IntermediateSplitItem3 = splits.find(split => split.id === "4");
           </Modal.Body>
         </Modal>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {IntermediateSplitItem2 ? (
-            <div>
-              <p>Recomended: {IntermediateSplitItem2.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {IntermediateSplitItem2.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p>
-          )}
+          <div>
+            <p>Recomended: Push Pull + Arms</p>
+            <p>Time: 5 Day</p>
+          </div>
         </Button>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {IntermediateSplitItem3 ? (
-            <div>
-              <p>Recomended: {IntermediateSplitItem3.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {IntermediateSplitItem3.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p>
-          )}
+          <div>
+            <p>Recomended: Upper Lower + Arms</p>
+            <p>Time: 5 Day</p>
+          </div>
         </Button>
       </ul>
     </div>
   );
 }
-export function AdvancedSplit() {
+export function ExpertSplitMale() {
   const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
   const [showTrainingGoal, setShowTrainingGoal] = useState(false);
-  const [splits, setSplits] = useState([]);
-  
-  useEffect(() => {
-    const fetchData = async () => { // this will fetch the data needed from firebase firestore from the specific database!
-      try {
-        const querySnapshot = await getDocs(collection(db, 'splits'));
-        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setSplits(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
 
-    fetchData();
-  }, []);
-
-  const AdvancedSplitItem = splits.find(split => split.id === "4"); // find out the data I need specifically for Advanced split
-  const AdvancedSplitItem2 = splits.find(split => split.id === "5");
-  const AdvancedSplitItem3 = splits.find(split => split.id === "6");
-  
   function handleShowTrainingGoal(breakpoint) {
     // this will handle opening the Training Goals Section!
     setFullscreen(breakpoint);
@@ -267,15 +194,10 @@ export function AdvancedSplit() {
       <h1>Choose Your Split</h1>
       <ul>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {AdvancedSplitItem ? ( // this creates a sudo function that will help change the item to an error code if not fetching the data correctly
-            <div>
-              <p>Recomended: {AdvancedSplitItem.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {AdvancedSplitItem.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p> // this will be a not found error code to track the split data not loading in properly
-          )}
+          <div>
+            <p>Recomended: Push Pull Legs</p>
+            <p>Time: 5 Day</p>
+          </div>
         </Button>
         <Modal
           show={showTrainingGoal}
@@ -288,74 +210,87 @@ export function AdvancedSplit() {
           </Modal.Body>
         </Modal>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {AdvancedSplitItem2 ? (
-            <div>
-              <p>Recomended: {AdvancedSplitItem2.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {AdvancedSplitItem2.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p>
-          )}
+          <div>
+            <p>Recomended: Push Pull + Arms</p>
+            <p>Time: 5 Day</p>
+          </div>
         </Button>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {AdvancedSplitItem3 ? (
-            <div>
-              <p>Recomended: {AdvancedSplitItem3.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {AdvancedSplitItem3.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p>
-          )}
+          <div>
+            <p>Recomended: Upper Lower + Arms</p>
+            <p>Time: 5 Day</p>
+          </div>
+        </Button>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Full Body </p>
+            <p>Time: 4 Day</p>
+          </div>
         </Button>
       </ul>
     </div>
   );
 }
-export function ExpertSplit() {
+
+export function BeginnerSplitFemale() {
   const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
   const [showTrainingGoal, setShowTrainingGoal] = useState(false);
-  const [splits, setSplits] = useState([]);
-  
-  useEffect(() => {
-    const fetchData = async () => { // this will fetch the data needed from firebase firestore from the specific database!
-      try {
-        const querySnapshot = await getDocs(collection(db, 'splits'));
-        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setSplits(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-const ExpertSplitItem = splits.find(split => split.id === "4"); // find out the data I need specifically for Expert split
-const ExpertSplitItem2 = splits.find(split => split.id === "5");
-const ExpertSplitItem3 = splits.find(split => split.id === "6");
-const ExpertSplitItem4 = splits.find(split => split.id === "7"); 
 
   function handleShowTrainingGoal(breakpoint) {
     // this will handle opening the Training Goals Section!
     setFullscreen(breakpoint);
     setShowTrainingGoal(true);
   }
+
   return (
     <div>
       <h1>Choose Your Split</h1>
       <ul>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {ExpertSplitItem ? ( // this creates a sudo function that will help change the item to an error code if not fetching the data correctly
-            <div>
-              <p>Recomended: {ExpertSplitItem.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {ExpertSplitItem.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p> // this will be a not found error code to track the split data not loading in properly
-          )}
+          <div>
+            <p>Recomended: This Works</p>
+            <p>Time: 3 Day</p>
+          </div>
+        </Button>
+        <Modal
+          show={showTrainingGoal}
+          fullscreen={fullscreen}
+          onHide={() => setShowTrainingGoal(false)}
+        >
+          <Modal.Body>
+            <Goals />
+          </Modal.Body>
+        </Modal>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Push Pull</p>
+            <p>Time: 4 Day</p>
+          </div>
+        </Button>
+      </ul>
+    </div>
+  );
+}
+export function NoviceSplitFemale() {
+  const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
+  const [showTrainingGoal, setShowTrainingGoal] = useState(false);
+
+  function handleShowTrainingGoal(breakpoint) {
+    // this will handle opening the Training Goals Section!
+    setFullscreen(breakpoint);
+    setShowTrainingGoal(true);
+  }
+
+  return (
+    <div>
+      <h1>Choose Your Split</h1>
+      <ul>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Full Body</p>
+            {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
+            <p>Time: 3 Day</p>
+          </div>
         </Button>
         <Modal
           show={showTrainingGoal}
@@ -368,39 +303,160 @@ const ExpertSplitItem4 = splits.find(split => split.id === "7");
           </Modal.Body>
         </Modal>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {ExpertSplitItem2 ? (
-            <div>
-              <p>Recomended: {ExpertSplitItem2.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {ExpertSplitItem2.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p>
-          )}
+          <div>
+            <p>Recomended: Push Pull</p>
+            <p>Time: 4 Day</p>
+          </div>
         </Button>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {ExpertSplitItem3 ? (
-            <div>
-              <p>Recomended: {ExpertSplitItem3.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {ExpertSplitItem3.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p>
-          )}
-        </Button>
-        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
-          {ExpertSplitItem4 ? (
-            <div>
-              <p>Recomended: {ExpertSplitItem4.name}</p>{" "}
-              {/* This grabs the data from the find function that will take the specific data from SplitList.json*/}
-              <p>Time: {ExpertSplitItem4.time}</p>
-            </div>
-          ) : (
-            <p>404 Error</p>
-          )}
+          <div>
+            <p>Recomended: Upper Lower</p>
+            <p>Time: 4 Day</p>
+          </div>
         </Button>
       </ul>
     </div>
   );
 }
+export function IntermediateSplitFemale() {
+  const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
+  const [showTrainingGoal, setShowTrainingGoal] = useState(false);
+
+  function handleShowTrainingGoal(breakpoint) {
+    // this will handle opening the Training Goals Section!
+    setFullscreen(breakpoint);
+    setShowTrainingGoal(true);
+  }
+  return (
+    <div>
+      <h1>Choose Your Split</h1>
+      <ul>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Push Pull</p>
+            <p>Time: 4 Day</p>
+          </div>
+        </Button>
+        <Modal
+          show={showTrainingGoal}
+          fullscreen={fullscreen}
+          onHide={() => setShowTrainingGoal(false)}
+        >
+          <Modal.Body>
+            <Goals />
+            {/* this is the button that leads to the next page after you select your Training Goal! */}
+          </Modal.Body>
+        </Modal>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Upper Lower</p>
+            <p>Time: 4 Day</p>
+          </div>
+        </Button>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Push Pull Legs</p>
+            <p>Time: 6 Day</p>
+          </div>
+        </Button>
+      </ul>
+    </div>
+  );
+}
+export function AdvancedSplitFemale() {
+  const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
+  const [showTrainingGoal, setShowTrainingGoal] = useState(false);
+
+  function handleShowTrainingGoal(breakpoint) {
+    // this will handle opening the Training Goals Section!
+    setFullscreen(breakpoint);
+    setShowTrainingGoal(true);
+  }
+  return (
+    <div>
+      <h1>Choose Your Split</h1>
+      <ul>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Push Pull Legs</p>
+            <p>Time: 6 Day</p>
+          </div>
+        </Button>
+        <Modal
+          show={showTrainingGoal}
+          fullscreen={fullscreen}
+          onHide={() => setShowTrainingGoal(false)}
+        >
+          <Modal.Body>
+            <Goals />
+            {/* this is the button that leads to the next page after you select your Training Goal! */}
+          </Modal.Body>
+        </Modal>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Push Pull + Legs</p>
+            <p>Time: 5 Day</p>
+          </div>
+        </Button>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Upper Lower + Legs</p>
+            <p>Time: 5 Day</p>
+          </div>
+        </Button>
+      </ul>
+    </div>
+  );
+}
+export function ExpertSplitFemale() {
+  const [fullscreen, setFullscreen] = useState(true); // this allows the modal to take a fullscreen approach
+  const [showTrainingGoal, setShowTrainingGoal] = useState(false);
+
+  function handleShowTrainingGoal(breakpoint) {
+    // this will handle opening the Training Goals Section!
+    setFullscreen(breakpoint);
+    setShowTrainingGoal(true);
+  }
+  return (
+    <div>
+      <h1>Choose Your Split</h1>
+      <ul>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Push Pull Legs</p>
+            <p>Time: 5 Day</p>
+          </div>
+        </Button>
+        <Modal
+          show={showTrainingGoal}
+          fullscreen={fullscreen}
+          onHide={() => setShowTrainingGoal(false)}
+        >
+          <Modal.Body>
+            <Goals />
+            {/* this is the button that leads to the next page after you select your Training Goal! */}
+          </Modal.Body>
+        </Modal>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Push Pull + Legs</p>
+            <p>Time: 5 Day</p>
+          </div>
+        </Button>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Upper Lower + Legs</p>
+            <p>Time: 5 Day</p>
+          </div>
+        </Button>
+        <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
+          <div>
+            <p>Recomended: Full Body </p>
+            <p>Time: 4 Day</p>
+          </div>
+        </Button>
+      </ul>
+    </div>
+  );
+}
+
