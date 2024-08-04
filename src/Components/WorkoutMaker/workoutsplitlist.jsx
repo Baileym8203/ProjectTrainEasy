@@ -248,7 +248,7 @@ export function BeginnerSplitFemale() {
       <ul>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
           <div>
-            <p>Recomended: This Works</p>
+            <p>Recomended: Full Body</p>
             <p>Time: 3 Day</p>
           </div>
         </Button>
@@ -394,7 +394,7 @@ export function AdvancedSplitFemale() {
         </Modal>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
           <div>
-            <p>Recomended: Push Pull + Legs</p>
+            <p>Recomended: Push Pull + Glutes</p>
             <p>Time: 5 Day</p>
           </div>
         </Button>
@@ -439,7 +439,7 @@ export function ExpertSplitFemale() {
         </Modal>
         <Button onClick={() => handleShowTrainingGoal(fullscreen)}>
           <div>
-            <p>Recomended: Push Pull + Legs</p>
+            <p>Recomended: Push Pull + Glutes</p>
             <p>Time: 5 Day</p>
           </div>
         </Button>
