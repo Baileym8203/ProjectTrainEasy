@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col} from "react-bootstrap";
-import { Beginner, Novice, Intermediate, Advanced, Expert } from "./TrainingLvlFunctions"; // All Training lvl files with Firestore data
-import { BeginnerSplitMale, NoviceSplitMale, IntermediateSplitMale, AdvancedSplitMale, ExpertSplitMale, BeginnerSplitFemale,
-  NoviceSplitFemale, IntermediateSplitFemale, AdvancedSplitFemale, ExpertSplitFemale} from "./workoutsplitlist";
+import { Beginner, Novice, Intermediate, Advanced, Expert } from "./traininglevelfunctions"; // All Training lvl files with Firestore data
+import { BeginnerSplitMale, NoviceSplitMale, IntermediateSplitMale, AdvancedSplitMale, ExpertSplitMale} from "./workoutsplitlistmale";
+import { BeginnerSplitFemale, NoviceSplitFemale, IntermediateSplitFemale, AdvancedSplitFemale, ExpertSplitFemale } from "./workoutsplitlistfemale";
 function TrainingLevel() {
   // This file is the home file for training Lvls. This file is mainly to keep track of props easier with simplicity
   // These are extremly IMPORTANT!! These are the props that will be passing all the training level data
